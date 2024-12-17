@@ -2,17 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyVampire : MonoBehaviour
+public class EnemyVampire : EnemyCtrl
 {
-    // Start is called before the first frame update
-    void Start()
+    public override string GetName()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        return "Vampire";
     }
 }

@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class MovingPoint : MonoBehaviour
 {
-    [SerializeField] private List<Vector3> _listPoint = new List<Vector3>();
-    public List<Vector3> ListPoint { get => _listPoint; set => _listPoint = value; }
+    [SerializeField] private List<Vector3> _listPoint = new();
+    public List<Vector3> ListPoint { get => _listPoint; }
 
     private void Start()
     {
@@ -18,11 +18,11 @@ public class MovingPoint : MonoBehaviour
     }
     private void LoadComponent()
     {
-        if (_listPoint.Count > 0 ) return;
+        if (_listPoint.Count == transform.childCount) return;
         foreach (Transform child in transform)
         {
             _listPoint.Add(child.position);
         }
-        Debug.Log("Load Component");
+        Debug.Log("Load: " + transform.name);
     }
 }

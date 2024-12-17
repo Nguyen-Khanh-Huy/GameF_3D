@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
-public abstract class EnemyCtrl : MonoBehaviour
+public abstract class EnemyCtrl : PISMonoBehaviour
 {
     [SerializeField] private Animator _anim;
     [SerializeField] private NavMeshAgent _agent;
@@ -13,19 +13,12 @@ public abstract class EnemyCtrl : MonoBehaviour
     public NavMeshAgent Agent { get => _agent; }
 
     public abstract string GetName();
-    private void Start()
+
+    protected override void LoadComponent()
     {
-        LoadComponent();
-    }
-    private void Reset()
-    {
-        LoadComponent();
-    }
-    private void LoadComponent()
-    {
-        if (_anim != null || _agent != null) return;
+        if (_anim != null && _agent != null) return;
         _anim = GetComponentInChildren<Animator>();
-        _agent= GetComponentInChildren<NavMeshAgent>();
+        _agent= GetComponent<NavMeshAgent>();
         Debug.Log("Load Component");
     }
 }
