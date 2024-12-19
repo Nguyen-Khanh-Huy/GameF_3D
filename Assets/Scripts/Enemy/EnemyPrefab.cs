@@ -6,6 +6,8 @@ public class EnemyPrefab : PISMonoBehaviour
 {
     [SerializeField] private List<EnemyCtrl> _listEnemyPrefabs = new();
 
+    public List<EnemyCtrl> ListEnemyPrefabs { get => _listEnemyPrefabs; }
+
     protected override void LoadComponent()
     {
         if (_listEnemyPrefabs.Count == transform.childCount) return;
@@ -14,5 +16,11 @@ public class EnemyPrefab : PISMonoBehaviour
             _listEnemyPrefabs.Add(child.GetComponent<EnemyCtrl>());
         }
         Debug.Log("Load: " + transform.name);
+    }
+
+    public EnemyCtrl GetRandomPrefab()
+    {
+        int rand = Random.Range(0, this._listEnemyPrefabs.Count);
+        return this._listEnemyPrefabs[rand];
     }
 }

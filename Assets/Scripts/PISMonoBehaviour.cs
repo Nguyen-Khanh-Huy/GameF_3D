@@ -8,9 +8,11 @@ public abstract class PISMonoBehaviour : MonoBehaviour
     {
         LoadComponent();
     }
+
     private void Reset()
     {
         LoadComponent();
     }
+
     protected abstract void LoadComponent();
 }

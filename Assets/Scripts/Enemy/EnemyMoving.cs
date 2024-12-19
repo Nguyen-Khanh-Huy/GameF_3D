@@ -13,6 +13,7 @@ public class EnemyMoving : PISMonoBehaviour
     {
         Moving();
     }
+
     protected override void LoadComponent()
     {
         if (_enemyCtrl != null && _movingPoint != null) return;
@@ -20,6 +21,7 @@ public class EnemyMoving : PISMonoBehaviour
         _movingPoint = GameObject.Find("MovingPoint").GetComponent<MovingPoint>();
         Debug.Log("Load Component");
     }
+
     private void Moving()
     {
         ChangeState();
@@ -30,6 +32,7 @@ public class EnemyMoving : PISMonoBehaviour
         }
         MovingNextPoint();
     }
+
     private void MovingNextPoint()
     {
         Vector3 CurPoint = _movingPoint.ListPoint[_pointIdx];
@@ -39,10 +42,12 @@ public class EnemyMoving : PISMonoBehaviour
         if (_pointIdx > _movingPoint.ListPoint.Count - 1) _isFinish = true;
         _enemyCtrl.Agent.SetDestination(CurPoint);
     }
+
     private void SetState(EnemyState state)
     {
         _enemyCtrl.Anim.SetInteger("State", (int)state);
     }
+
     private void ChangeState()
     {
         SetState(_enemyCtrl.Agent.isStopped ? EnemyState.Idle : EnemyState.Walk);
