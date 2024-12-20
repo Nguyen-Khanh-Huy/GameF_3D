@@ -19,12 +19,18 @@ public class EnemyMoving : PISMonoBehaviour
         if (_enemyCtrl != null && _movingPoint != null) return;
         _enemyCtrl = GetComponentInParent<EnemyCtrl>();
         _movingPoint = GameObject.Find("MovingPoint").GetComponent<MovingPoint>();
-        Debug.Log("Load Component");
+        Debug.Log("Load: " + transform.name);
+    }
+
+    private void OnDisable()
+    {
+        _pointIdx = 0;
     }
 
     private void Moving()
     {
         ChangeState();
+        //if(_enemyCtrl.Agent == null) return;
         if (_isFinish) 
         {
             _enemyCtrl.Agent.isStopped = true;
@@ -40,6 +46,7 @@ public class EnemyMoving : PISMonoBehaviour
 
         if (DistancePoint <= 1f) _pointIdx++;
         if (_pointIdx > _movingPoint.ListPoint.Count - 1) _isFinish = true;
+        //if (_enemyCtrl.Agent == null) return;
         _enemyCtrl.Agent.SetDestination(CurPoint);
     }
 

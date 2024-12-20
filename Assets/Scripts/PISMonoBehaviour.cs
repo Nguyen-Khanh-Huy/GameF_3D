@@ -4,12 +4,12 @@ using UnityEngine;
 
 public abstract class PISMonoBehaviour : MonoBehaviour
 {
-    private void Awake()
+    protected virtual void Start()
     {
         LoadComponent();
     }
 
-    private void Reset()
+    protected virtual void Reset()
     {
         LoadComponent();
     }

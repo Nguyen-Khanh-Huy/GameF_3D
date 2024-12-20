@@ -2,16 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
+public abstract class Singleton<T> : PISMonoBehaviour where T : PISMonoBehaviour
 {
     private static T _ins;
 
     public static T Ins { get { return _ins; } }
 
-    public virtual void Awake()
+    protected override void Start()
     {
         DontDestroy(true);
     }
+    //public virtual void Awake()
+    //{
+    //    DontDestroy(true);
+    //}
 
     public void DontDestroy(bool dontDestroyOnLoad)
     {

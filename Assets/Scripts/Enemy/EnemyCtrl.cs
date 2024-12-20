@@ -4,14 +4,14 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
-public abstract class EnemyCtrl : PoolObj
+public abstract class EnemyCtrl : PoolObj<EnemyCtrl>
 {
     [SerializeField] private Animator _anim;
     [SerializeField] private NavMeshAgent _agent;
     [SerializeField] private TowerCtrl _towerCtrl;
 
     public Animator Anim { get => _anim; }
-    public NavMeshAgent Agent { get => _agent; }
+    public NavMeshAgent Agent { get => _agent; set => _agent = value; }
 
     protected override void LoadComponent()
     {
@@ -21,8 +21,9 @@ public abstract class EnemyCtrl : PoolObj
         _towerCtrl = GameObject.Find("TowerCtrl").GetComponent<TowerCtrl>();
         Debug.Log("Load: " + transform.name);
     }
-    protected void OnDisable()
+
+    private void OnDisable()
     {
-        _towerCtrl.TowerTarget.ListEnemyTarget.Remove(this);
+        _towerCtrl.TowerTarget.RemoveListTarget(this);
     }
 }

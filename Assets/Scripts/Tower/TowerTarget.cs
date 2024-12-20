@@ -17,23 +17,25 @@ public class TowerTarget : MonoBehaviour
             _listEnemyTarget.Add(enemy);
         }
     }
+
     private void OnTriggerStay(Collider other)
     {
         EnemyCtrl enemy = other.GetComponentInParent<EnemyCtrl>();
         if (enemy != null)
         {
             float minDistance = Mathf.Infinity;
-            foreach (EnemyCtrl enemyIdx in _listEnemyTarget)
+            foreach (EnemyCtrl enemyInList in _listEnemyTarget)
             {
-                float distance = Vector3.Distance(transform.position, enemyIdx.transform.position);
-                if (distance < minDistance)
+                float distance = Vector3.Distance(transform.position, enemyInList.transform.position);
+                if (minDistance > distance)
                 {
                     minDistance = distance;
-                    _target = enemyIdx;
+                    _target = enemyInList;
                 }
             }
         }
     }
+
     private void OnTriggerExit(Collider other)
     {
         EnemyCtrl enemy = other.GetComponentInParent<EnemyCtrl>();
@@ -46,5 +48,10 @@ public class TowerTarget : MonoBehaviour
         {
             _target = null;
         }
+    }
+
+    public void RemoveListTarget(EnemyCtrl enemy)
+    {
+        _listEnemyTarget.Remove(enemy);
     }
 }
