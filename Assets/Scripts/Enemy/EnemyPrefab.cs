@@ -6,7 +6,7 @@ public class EnemyPrefab : PISMonoBehaviour
 {
     [SerializeField] private List<EnemyCtrl> _listEnemyPrefabs = new();
 
-    protected override void LoadComponent()
+    protected override void LoadComponents()
     {
         if (_listEnemyPrefabs.Count > 0) return;
         _listEnemyPrefabs.Clear();

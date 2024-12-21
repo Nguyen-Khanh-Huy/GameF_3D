@@ -6,25 +6,21 @@ public class EnemyPool : PoolManager<EnemyCtrl>
 {
     [SerializeField] protected EnemyPrefab _enemyPrefab;
     [SerializeField] protected float _speedSpawn;
-    [SerializeField] protected float _timeSpawn;
 
-    private void FixedUpdate()
+    private void Start()
     {
-        SpawnEnemy();
+        Invoke(nameof(SpawnEnemy), _speedSpawn);
     }
 
     private void SpawnEnemy()
     {
-        _timeSpawn += Time.deltaTime;
-        if(_timeSpawn >= _speedSpawn)
-        {
-            _timeSpawn = 0;
-            Spawn(_enemyPrefab.GetRandomEnemyPrefab(), new Vector3(0, 2, 45), Quaternion.identity);
-        }
+        Invoke(nameof(SpawnEnemy), _speedSpawn);
+        Spawn(_enemyPrefab.GetRandomEnemyPrefab(), new Vector3(0, 2, 45), Quaternion.identity);
     }
-    protected override void LoadComponent()
+
+    protected override void LoadComponents()
     {
-        if(_enemyPrefab != null) return;
+        if (_enemyPrefab != null) return;
         _enemyPrefab = GetComponent<EnemyPrefab>();
         Debug.Log("Load: " + transform.name);
     }

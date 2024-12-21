@@ -17,7 +17,7 @@ public class TowerCtrl : PISMonoBehaviour
     public Transform FirePoint1 { get => _firePoint1; }
     public Transform FirePoint2 { get => _firePoint2; }
 
-    protected override void LoadComponent()
+    protected override void LoadComponents()
     {
         if (_towerFire != null && _towerTarget != null && _bullet != null && _rotate != null && _firePoint1 != null && _firePoint2 != null) return;
         _towerFire = GetComponentInChildren<TowerFire>();

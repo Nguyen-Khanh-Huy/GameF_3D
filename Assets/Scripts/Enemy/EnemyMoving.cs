@@ -14,7 +14,7 @@ public class EnemyMoving : PISMonoBehaviour
         Moving();
     }
 
-    protected override void LoadComponent()
+    protected override void LoadComponents()
     {
         if (_enemyCtrl != null && _movingPoint != null) return;
         _enemyCtrl = GetComponentInParent<EnemyCtrl>();
@@ -30,7 +30,6 @@ public class EnemyMoving : PISMonoBehaviour
     private void Moving()
     {
         ChangeState();
-        //if(_enemyCtrl.Agent == null) return;
         if (_isFinish) 
         {
             _enemyCtrl.Agent.isStopped = true;
@@ -46,7 +45,6 @@ public class EnemyMoving : PISMonoBehaviour
 
         if (DistancePoint <= 1f) _pointIdx++;
         if (_pointIdx > _movingPoint.ListPoint.Count - 1) _isFinish = true;
-        //if (_enemyCtrl.Agent == null) return;
         _enemyCtrl.Agent.SetDestination(CurPoint);
     }
 

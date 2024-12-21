@@ -8,7 +8,7 @@ public abstract class Singleton<T> : PISMonoBehaviour where T : PISMonoBehaviour
 
     public static T Ins { get { return _ins; } }
 
-    protected override void Start()
+    protected override void Awake()
     {
         DontDestroy(true);
     }

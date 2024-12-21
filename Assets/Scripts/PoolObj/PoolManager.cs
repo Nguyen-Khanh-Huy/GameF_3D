@@ -2,22 +2,17 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public abstract class PoolManager<T> : Singleton<PoolManager<T>> where T : PoolObj<T>
 {
     [SerializeField] protected int _spawnCount = 0;
     [SerializeField] protected List<T> _listPool = new();
 
-    protected override void Start()
+    protected override void Awake()
     {
         DontDestroy(false);
     }
-    //public virtual T Spawn(T prefab, Vector3 postion)
-    //{
-    //    T newObj = Spawn(prefab);
-    //    newObj.transform.position = postion;
-    //    return newObj;
-    //}
 
     public virtual T Spawn(T prefab, Vector3 postion, Quaternion rotation)
     {
@@ -25,7 +20,6 @@ public abstract class PoolManager<T> : Singleton<PoolManager<T>> where T : PoolO
         if (newObj == null)
         {
             newObj = Instantiate(prefab, postion, rotation);
-            _spawnCount++;
             UpdateName(prefab.transform, newObj.transform);
             newObj.transform.SetParent(transform);
         }
@@ -52,21 +46,14 @@ public abstract class PoolManager<T> : Singleton<PoolManager<T>> where T : PoolO
 
     public virtual void Despawn(T prefab)
     {
+        if (_listPool.Contains(prefab)) return;
         prefab.gameObject.SetActive(false);
         AddObjToPool(prefab);
     }
 
-    //public virtual void Despawn(T obj)
-    //{
-    //    if (obj is MonoBehaviour monoBehaviour)
-    //    {
-    //        monoBehaviour.gameObject.SetActive(false);
-    //        AddObjToPool(obj);
-    //    }
-    //}
-
     protected virtual void UpdateName(Transform prefab, Transform newObject)
     {
+        _spawnCount++;
         newObject.name = _spawnCount + "_" + prefab.name;
     }
 
@@ -78,11 +65,5 @@ public abstract class PoolManager<T> : Singleton<PoolManager<T>> where T : PoolO
     protected virtual void RemoveObjFromPool(T obj)
     {
         _listPool.Remove(obj);
-    }
-
-    protected virtual void ResetSpawnCount()
-    {
-        if (_listPool.Count <= 0)
-            _spawnCount = 0;
     }
 }

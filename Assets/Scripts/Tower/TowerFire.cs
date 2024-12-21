@@ -24,11 +24,7 @@ public class TowerFire : PISMonoBehaviour
         if (_timeFire >= _speedFire)
         {
             _timeFire = 0;
-            var newBullet = Instantiate(_towerCtrl.Bullet, GetFirePoint().transform.position , GetFirePoint().transform.rotation);
-            if (newBullet != null)
-            {
-                Destroy(newBullet.gameObject, 3f);
-            }
+            PoolManager<Bullet>.Ins.Spawn(_towerCtrl.Bullet, GetFirePoint().transform.position, GetFirePoint().transform.rotation);
         }
     }
 
@@ -49,7 +45,7 @@ public class TowerFire : PISMonoBehaviour
         _towerCtrl.Rotate.LookAt(_towerCtrl.TowerTarget.Target.transform);
     }
 
-    protected override void LoadComponent()
+    protected override void LoadComponents()
     {
         if (_towerCtrl != null) return;
         _towerCtrl = GetComponentInParent<TowerCtrl>();

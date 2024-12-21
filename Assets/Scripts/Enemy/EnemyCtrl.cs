@@ -11,9 +11,9 @@ public abstract class EnemyCtrl : PoolObj<EnemyCtrl>
     [SerializeField] private TowerCtrl _towerCtrl;
 
     public Animator Anim { get => _anim; }
-    public NavMeshAgent Agent { get => _agent; set => _agent = value; }
+    public NavMeshAgent Agent { get => _agent; }
 
-    protected override void LoadComponent()
+    protected override void LoadComponents()
     {
         if (_anim != null && _agent != null && _towerCtrl != null) return;
         _anim = GetComponentInChildren<Animator>();
