@@ -15,7 +15,7 @@ public class EnemyPool : PoolManager<EnemyCtrl>
     private void SpawnEnemy()
     {
         Invoke(nameof(SpawnEnemy), _speedSpawn);
-        Spawn(_enemyPrefab.GetRandomEnemyPrefab(), new Vector3(0, 2, 45), Quaternion.identity);
+        Spawn(_enemyPrefab.GetRandomEnemyPrefab(), new Vector3(0f, 0f, 45f), Quaternion.identity);
     }
 
     protected override void LoadComponents()

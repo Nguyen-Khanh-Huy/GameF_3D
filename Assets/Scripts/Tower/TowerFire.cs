@@ -24,7 +24,7 @@ public class TowerFire : PISMonoBehaviour
         if (_timeFire >= _speedFire)
         {
             _timeFire = 0;
-            PoolManager<Bullet>.Ins.Spawn(_towerCtrl.Bullet, GetFirePoint().transform.position, GetFirePoint().transform.rotation);
+            PoolManager<BulletCtrl>.Ins.Spawn(_towerCtrl.Bullet, GetFirePoint().transform.position, GetFirePoint().transform.rotation);
         }
     }
 

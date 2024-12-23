@@ -10,7 +10,7 @@ public class EnemyPrefab : PISMonoBehaviour
     {
         if (_listEnemyPrefabs.Count > 0) return;
         _listEnemyPrefabs.Clear();
-        EnemyCtrl[] enemyPrefabs = Resources.LoadAll<EnemyCtrl>("Enemy");
+        EnemyCtrl[] enemyPrefabs = Resources.LoadAll<EnemyCtrl>("Enemies");
         foreach (EnemyCtrl enemyPrefab in enemyPrefabs)
         {
             if (enemyPrefab != null)

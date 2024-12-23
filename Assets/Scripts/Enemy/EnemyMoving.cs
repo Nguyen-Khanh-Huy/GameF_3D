@@ -5,10 +5,11 @@ using UnityEngine;
 public class EnemyMoving : PISMonoBehaviour
 {
     [SerializeField] private EnemyCtrl _enemyCtrl;
-    [SerializeField] private MovingPoint _movingPoint;
     [SerializeField] private int _pointIdx = 0;
     [SerializeField] private bool _isFinish;
-    
+
+    public int PointIdx { get => _pointIdx; set => _pointIdx = value; }
+
     private void Update()
     {
         Moving();
@@ -16,35 +17,28 @@ public class EnemyMoving : PISMonoBehaviour
 
     protected override void LoadComponents()
     {
-        if (_enemyCtrl != null && _movingPoint != null) return;
+        Debug.Log(_enemyCtrl.MovingPoint.ListPoint.Count);
+        if (_enemyCtrl != null) return;
         _enemyCtrl = GetComponentInParent<EnemyCtrl>();
-        _movingPoint = GameObject.Find("MovingPoint").GetComponent<MovingPoint>();
         Debug.Log("Load: " + transform.name);
-    }
-
-    private void OnDisable()
-    {
-        _pointIdx = 0;
     }
 
     private void Moving()
     {
         ChangeState();
-        if (_isFinish) 
-        {
-            _enemyCtrl.Agent.isStopped = true;
-            return;
-        }
         MovingNextPoint();
     }
 
     private void MovingNextPoint()
     {
-        Vector3 CurPoint = _movingPoint.ListPoint[_pointIdx];
+        if (_pointIdx >= _enemyCtrl.MovingPoint.ListPoint.Count)
+        {
+            _isFinish = true;
+            return;
+        }
+        Vector3 CurPoint = _enemyCtrl.MovingPoint.ListPoint[_pointIdx];
         float DistancePoint = Vector3.Distance(transform.position, CurPoint);
-
         if (DistancePoint <= 1f) _pointIdx++;
-        if (_pointIdx > _movingPoint.ListPoint.Count - 1) _isFinish = true;
         _enemyCtrl.Agent.SetDestination(CurPoint);
     }
 
@@ -55,6 +49,22 @@ public class EnemyMoving : PISMonoBehaviour
 
     private void ChangeState()
     {
-        SetState(_enemyCtrl.Agent.isStopped ? EnemyState.Idle : EnemyState.Walk);
+        if (_isFinish)
+        {
+            SetState(EnemyState.Idle);
+            _enemyCtrl.Agent.isStopped = true;
+            return;
+        }
+
+        if (_enemyCtrl.Hp > 0)
+        {
+            SetState(EnemyState.Walk);
+            _enemyCtrl.Agent.isStopped = false;
+        }
+        else
+        {
+            SetState(EnemyState.Die);
+            _enemyCtrl.Agent.isStopped = true;
+        }
     }
 }

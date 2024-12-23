@@ -50,7 +50,7 @@ public class TowerTarget : MonoBehaviour
         }
     }
 
-    public void RemoveListTarget(EnemyCtrl enemy)
+    public void RemoveInListTowerTarget(EnemyCtrl enemy)
     {
         _listEnemyTarget.Remove(enemy);
     }
