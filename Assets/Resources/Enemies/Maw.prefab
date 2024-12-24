@@ -1172,7 +1172,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _anim: {fileID: 3002026349287029130}
   _agent: {fileID: 6674772580868100185}
-  _towerCtrl: {fileID: 0}
+  _movingPoints: {fileID: 0}
+  _enemyMoving: {fileID: 0}
   _hp: 3
 --- !u!1 &5565375527370056020
 GameObject:
@@ -1531,7 +1532,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyCtrl: {fileID: 5607184616802462120}
-  _movingPoint: {fileID: 0}
   _pointIdx: 0
   _isFinish: 0
 --- !u!1 &6139903242507315551

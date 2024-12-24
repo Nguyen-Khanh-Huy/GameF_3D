@@ -29,8 +29,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4033639061470175830}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.094361365, y: 0.22466981, z: -0.02186464, w: 0.9696089}
-  m_LocalPosition: {x: 35.450245, y: 2.4450681, z: 30.798687}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -147,3 +147,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speedBullet: 100
+  _itemCoin: {fileID: 0}
+  _itemAxe: {fileID: 0}
+  _itemMace: {fileID: 0}
+  _itemSpear: {fileID: 0}
+  _itemWand: {fileID: 0}

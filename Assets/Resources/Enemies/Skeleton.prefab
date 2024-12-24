@@ -751,7 +751,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyCtrl: {fileID: 987604371058854167}
-  _movingPoint: {fileID: 0}
   _pointIdx: 0
   _isFinish: 0
 --- !u!1 &2644343569514773732
@@ -1712,6 +1711,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyCtrl: {fileID: 987604371058854167}
   _despawnByTime: 3
+  _isSpawnedItem: 0
 --- !u!1 &5169145988967339909
 GameObject:
   m_ObjectHideFlags: 0
@@ -2614,7 +2614,6 @@ GameObject:
   - component: {fileID: 2054557454786627220}
   - component: {fileID: 7863416311376114622}
   - component: {fileID: 987604371058854167}
-  - component: {fileID: 4669722770459750534}
   m_Layer: 0
   m_Name: Skeleton
   m_TagString: Untagged
@@ -2676,22 +2675,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _anim: {fileID: 56088643350365166}
   _agent: {fileID: 7863416311376114622}
-  _towerCtrl: {fileID: 0}
+  _movingPoints: {fileID: 0}
+  _enemyMoving: {fileID: 0}
+  _itemManager: {fileID: 0}
   _hp: 3
---- !u!114 &4669722770459750534
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8898435052231900357}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a64698b4f43a854a99c211630181541, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _enemyCtrl: {fileID: 987604371058854167}
-  _despawnByTime: 3
 --- !u!1 &9055635312460535975
 GameObject:
   m_ObjectHideFlags: 0

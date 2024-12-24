@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EnemyPool : PoolManager<EnemyCtrl>
 {
-    [SerializeField] protected EnemyPrefab _enemyPrefab;
-    [SerializeField] protected float _speedSpawn;
+    [SerializeField] protected EnemyManager _enemyManager;
+    [SerializeField] protected float _speedSpawn = 1f;
 
     private void Start()
     {
@@ -15,13 +15,13 @@ public class EnemyPool : PoolManager<EnemyCtrl>
     private void SpawnEnemy()
     {
         Invoke(nameof(SpawnEnemy), _speedSpawn);
-        Spawn(_enemyPrefab.GetRandomEnemyPrefab(), new Vector3(0f, 0f, 45f), Quaternion.identity);
+        Spawn(_enemyManager.EnemyPrefab.GetRandomEnemyPrefab(), new Vector3(0f, 0f, 45f), Quaternion.identity);
     }
 
     protected override void LoadComponents()
     {
-        if (_enemyPrefab != null) return;
-        _enemyPrefab = GetComponent<EnemyPrefab>();
+        if (_enemyManager != null) return;
+        _enemyManager = GetComponentInParent<EnemyManager>();
         Debug.Log("Load: " + transform.name);
     }
 }

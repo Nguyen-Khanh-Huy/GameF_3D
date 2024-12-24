@@ -17,7 +17,6 @@ public class EnemyMoving : PISMonoBehaviour
 
     protected override void LoadComponents()
     {
-        Debug.Log(_enemyCtrl.MovingPoint.ListPoint.Count);
         if (_enemyCtrl != null) return;
         _enemyCtrl = GetComponentInParent<EnemyCtrl>();
         Debug.Log("Load: " + transform.name);
@@ -31,12 +30,12 @@ public class EnemyMoving : PISMonoBehaviour
 
     private void MovingNextPoint()
     {
-        if (_pointIdx >= _enemyCtrl.MovingPoint.ListPoint.Count)
+        if (_pointIdx >= _enemyCtrl.MovingPoints.ListMovingPoints.Count)
         {
             _isFinish = true;
             return;
         }
-        Vector3 CurPoint = _enemyCtrl.MovingPoint.ListPoint[_pointIdx];
+        Vector3 CurPoint = _enemyCtrl.MovingPoints.ListMovingPoints[_pointIdx];
         float DistancePoint = Vector3.Distance(transform.position, CurPoint);
         if (DistancePoint <= 1f) _pointIdx++;
         _enemyCtrl.Agent.SetDestination(CurPoint);

@@ -8,26 +8,26 @@ public abstract class EnemyCtrl : PoolObj<EnemyCtrl>
 {
     [SerializeField] private Animator _anim;
     [SerializeField] private NavMeshAgent _agent;
-    [SerializeField] private TowerCtrl _towerCtrl;
-    [SerializeField] private MovingPoint _movingPoint;
+    [SerializeField] private MovingPoints _movingPoints;
     [SerializeField] private EnemyMoving _enemyMoving;
+    [SerializeField] private ItemManager _itemManager;
     [SerializeField] private int _hp = 3;
 
     public Animator Anim { get => _anim; }
     public NavMeshAgent Agent { get => _agent; }
-    public TowerCtrl TowerCtrl { get => _towerCtrl;}
-    public MovingPoint MovingPoint { get => _movingPoint; set => _movingPoint = value; }
+    public MovingPoints MovingPoints { get => _movingPoints; set => _movingPoints = value; }
     public EnemyMoving EnemyMoving { get => _enemyMoving; }
+    public ItemManager ItemManager { get => _itemManager; }
     public int Hp { get => _hp; set => _hp = value; }
 
     protected override void LoadComponents()
     {
-        if (_anim != null && _agent != null && _towerCtrl != null && _movingPoint != null && _enemyMoving != null) return;
+        if (_anim != null && _agent != null && _movingPoints != null && _enemyMoving != null && _itemManager != null) return;
         _anim = GetComponentInChildren<Animator>();
         _agent = GetComponent<NavMeshAgent>();
-        _towerCtrl = GameObject.Find("TowerCtrl").GetComponent<TowerCtrl>();
-        _movingPoint = GameObject.Find("MovingPoint").GetComponent<MovingPoint>();
+        _movingPoints = GameObject.Find("MovingPoints").GetComponent<MovingPoints>();
         _enemyMoving = GetComponentInChildren<EnemyMoving>();
+        _itemManager = GameObject.Find("ItemsManager").GetComponent<ItemManager>();
         Debug.Log("Load: " + transform.name);
     }
 }
