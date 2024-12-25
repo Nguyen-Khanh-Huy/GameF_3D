@@ -4,11 +4,17 @@ using UnityEngine;
 
 public abstract class AudioCtrl : PoolObj<AudioCtrl>
 {
-    [SerializeField] protected AudioSource _audioSource;
+    [SerializeField] public AudioSource AudioSource;
     protected override void LoadComponents()
     {
-        if (_audioSource != null) return;
-        _audioSource = GetComponent<AudioSource>();
+        if (AudioSource != null) return;
+        AudioSource = GetComponent<AudioSource>();
         Debug.Log("Load: " + transform.name);
     }
+
+    protected virtual void OnEnable()
+    {
+        SetInfor();
+    }
+    protected abstract void SetInfor();
 }

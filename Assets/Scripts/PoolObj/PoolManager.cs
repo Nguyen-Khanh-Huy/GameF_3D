@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.EventSystems.EventTrigger;
 
 public abstract class PoolManager<T> : Singleton<PoolManager<T>> where T : PoolObj<T>
 {
@@ -20,7 +19,7 @@ public abstract class PoolManager<T> : Singleton<PoolManager<T>> where T : PoolO
         if (newObj == null)
         {
             newObj = Instantiate(prefab, postion, rotation);
-            UpdateName(prefab.transform, newObj.transform);
+            UpdateName(prefab, newObj);
             newObj.transform.SetParent(transform);
         }
         else
@@ -51,7 +50,7 @@ public abstract class PoolManager<T> : Singleton<PoolManager<T>> where T : PoolO
         AddObjToPool(prefab);
     }
 
-    protected virtual void UpdateName(Transform prefab, Transform newObject)
+    protected virtual void UpdateName(T prefab, T newObject)
     {
         _spawnCount++;
         newObject.name = _spawnCount + "_" + prefab.name;

@@ -6,12 +6,12 @@ public class AudioMusicGamePlay : AudioCtrl
 {
     public override string GetName()
     {
-        return "AudioMusic";
+        return "AudioMusicGamePlay";
     }
-    protected override void LoadComponents()
+
+    protected override void SetInfor()
     {
-        _audioSource.loop = true;
-        _audioSource.spatialBlend = 0;
-        base.LoadComponents();
+        AudioSource.loop = true;
+        AudioSource.spatialBlend = 0;
     }
 }

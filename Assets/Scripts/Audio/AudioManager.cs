@@ -10,9 +10,9 @@ public class AudioManager : Singleton<AudioManager>
     [SerializeField] private AudioPool _audioPool;
 
     [Range(0, 1)]
-    public float VolumeMusic;
+    public float VolumeMusic = 0.5f;
     [Range(0, 1)]
-    public float VolumeSFX;
+    public float VolumeSFX = 1f;
 
     [SerializeField] private List<AudioCtrl> _listSetVolumeMusic;
     [SerializeField] private List<AudioCtrl> _listSetVolumeSFX;
@@ -20,6 +20,7 @@ public class AudioManager : Singleton<AudioManager>
     private void Start()
     {
         SpawnMusic(typeof(AudioMusicGamePlay));
+        Debug.Log(_audioPrefab.GetMusicPrefab(typeof(AudioMusicGamePlay)).GetName());
     }
     protected override void LoadComponents()
     {
@@ -29,12 +30,36 @@ public class AudioManager : Singleton<AudioManager>
         Debug.Log("Load: " + transform.name);
     }
 
+    public void SetVolume(AudioCtrl audioMusic, float volume)
+    {
+        audioMusic.AudioSource.volume = volume;
+    }
+
+    public void UpdateVolumeMusic(float volume)
+    {
+        VolumeMusic = volume;
+        foreach (AudioCtrl audioCtrl in _listSetVolumeMusic)
+        {
+            audioCtrl.AudioSource.volume = VolumeMusic;
+        }
+    }
+
+    public void UpdateVolumeSFX(float volume)
+    {
+        VolumeMusic = volume;
+        foreach (AudioCtrl audioCtrl in _listSetVolumeSFX)
+        {
+            audioCtrl.AudioSource.volume = VolumeSFX;
+        }
+    }
+
     public void SpawnMusic(Type audioMusicCtrl)
     {
         AudioCtrl newMusicPrefab = _audioPrefab.GetMusicPrefab(audioMusicCtrl);
         if (newMusicPrefab != null)
         {
             AudioCtrl newMusic = PoolManager<AudioCtrl>.Ins.Spawn(newMusicPrefab, Vector3.zero, Quaternion.identity);
+            SetVolume(newMusic, VolumeMusic);
             if (_listSetVolumeMusic.Contains(newMusic)) return;
             _listSetVolumeMusic.Add(newMusic);
         }
@@ -46,6 +71,7 @@ public class AudioManager : Singleton<AudioManager>
         if (newSFXPrefab != null)
         {
             AudioCtrl newSFX = PoolManager<AudioCtrl>.Ins.Spawn(newSFXPrefab, position, Quaternion.identity);
+            SetVolume(newSFX, VolumeSFX);
             if (_listSetVolumeSFX.Contains(newSFX)) return;
             _listSetVolumeSFX.Add(newSFX);
         }
