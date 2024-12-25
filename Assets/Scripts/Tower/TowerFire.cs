@@ -25,6 +25,7 @@ public class TowerFire : PISMonoBehaviour
         {
             _timeFire = 0;
             PoolManager<BulletCtrl>.Ins.Spawn(_towerCtrl.Bullet, GetFirePoint().transform.position, GetFirePoint().transform.rotation);
+            AudioManager.Ins.SpawnSFX(typeof(AudioSFXTowerFire), GetFirePoint().transform.position);
         }
     }
 

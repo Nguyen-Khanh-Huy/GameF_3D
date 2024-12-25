@@ -6,7 +6,7 @@ using static UnityEngine.EventSystems.EventTrigger;
 
 public abstract class PoolManager<T> : Singleton<PoolManager<T>> where T : PoolObj<T>
 {
-    [SerializeField] protected int _spawnCount = 0;
+    protected int _spawnCount = 0;
     [SerializeField] protected List<T> _listPool = new();
 
     protected override void Awake()

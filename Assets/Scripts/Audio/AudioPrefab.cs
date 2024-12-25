@@ -1,11 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class AudioPrefab : PISMonoBehaviour
 {
-    [SerializeField] private List<AudioMusicCtrl> _listAudioMusicPrefabs = new();
-    [SerializeField] private List<AudioSFXCtrl> _listAudioSFXPrefabs = new();
+    [SerializeField] private List<AudioCtrl> _listMusicPrefabs = new();
+    [SerializeField] private List<AudioCtrl> _listSFXPrefabs = new();
 
     protected override void LoadComponents()
     {
@@ -26,33 +27,33 @@ public class AudioPrefab : PISMonoBehaviour
 
     private void LoadListAudioMusicPrefab()
     {
-        if (_listAudioMusicPrefabs.Count > 0) return;
-        _listAudioMusicPrefabs.Clear();
-        AudioMusicCtrl[] musicPrefabs = Resources.LoadAll<AudioMusicCtrl>("Audios/AudioMusic");
-        foreach (AudioMusicCtrl musicPrefab in musicPrefabs)
+        if (_listMusicPrefabs.Count > 0) return;
+        _listMusicPrefabs.Clear();
+        AudioCtrl[] musicPrefabs = Resources.LoadAll<AudioCtrl>("Audios/Music");
+        foreach (AudioCtrl musicPrefab in musicPrefabs)
         {
-            if (musicPrefab != null) _listAudioMusicPrefabs.Add(musicPrefab);
+            if (musicPrefab != null) _listMusicPrefabs.Add(musicPrefab);
         }
         Debug.Log("Load: " + transform.name);
     }
 
     private void LoadListAudioSFXPrefab()
     {
-        if (_listAudioSFXPrefabs.Count > 0) return;
-        _listAudioSFXPrefabs.Clear();
-        AudioSFXCtrl[] sfxPrefabs = Resources.LoadAll<AudioSFXCtrl>("Audios/AudioSFX");
-        foreach (AudioSFXCtrl sfxPrefab in sfxPrefabs)
+        if (_listSFXPrefabs.Count > 0) return;
+        _listSFXPrefabs.Clear();
+        AudioCtrl[] sfxPrefabs = Resources.LoadAll<AudioCtrl>("Audios/SFX");
+        foreach (AudioCtrl sfxPrefab in sfxPrefabs)
         {
-            if (sfxPrefab != null) _listAudioSFXPrefabs.Add(sfxPrefab);
+            if (sfxPrefab != null) _listSFXPrefabs.Add(sfxPrefab);
         }
         Debug.Log("Load: " + transform.name);
     }
 
-    public AudioMusicCtrl GetAudioMusic()
+    public AudioCtrl GetMusicPrefab(Type musicPrefab)
     {
-        foreach (var inList in _listAudioMusicPrefabs)
+        foreach (var inList in _listMusicPrefabs)
         {
-            if (inList.GetType() == typeof(AudioMusicGamePlay))
+            if (musicPrefab.IsAssignableFrom(inList.GetType()))
             {
                 return inList;
             }
@@ -60,15 +61,39 @@ public class AudioPrefab : PISMonoBehaviour
         return null;
     }
 
-    public AudioSFXCtrl GetAudioSFXTowerFire()
+    public AudioCtrl GetSFXPrefab(Type sfxPrefab)
     {
-        foreach (var inList in _listAudioSFXPrefabs)
+        foreach (var inList in _listSFXPrefabs)
         {
-            if (inList.GetType() == typeof(AudioSFXTowerFire))
+            if (sfxPrefab.IsAssignableFrom(inList.GetType()))
             {
                 return inList;
             }
         }
         return null;
     }
+
+    //public AudioMusicCtrl GetAudioMusic()
+    //{
+    //    foreach (var inList in _listAudioMusicPrefabs)
+    //    {
+    //        if (inList.GetType() == typeof(AudioMusicGamePlay))
+    //        {
+    //            return inList;
+    //        }
+    //    }
+    //    return null;
+    //}
+
+    //public AudioSFXCtrl GetAudioSFXTowerFire()
+    //{
+    //    foreach (var inList in _listAudioSFXPrefabs)
+    //    {
+    //        if (inList.GetType() == typeof(AudioSFXTowerFire))
+    //        {
+    //            return inList;
+    //        }
+    //    }
+    //    return null;
+    //}
 }
