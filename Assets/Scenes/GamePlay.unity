@@ -297,6 +297,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyPrefab: {fileID: 1801964852}
   _enemyPool: {fileID: 1408231877}
+  _speedSpawn: 2
 --- !u!1 &56797692
 GameObject:
   m_ObjectHideFlags: 0
@@ -1690,7 +1691,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: b54cfeb11109e7c45a11989d2b3aa25a, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 4783218b9fc4f9a4aa003d7680ecdebd, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &644357969
 GameObject:
@@ -3513,8 +3514,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _listPool: []
-  _enemyManager: {fileID: 56655923}
-  _speedSpawn: 2
 --- !u!1 &1427687974
 GameObject:
   m_ObjectHideFlags: 0

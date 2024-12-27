@@ -30,7 +30,7 @@ public class EnemyPrefab : PISMonoBehaviour
 
     public EnemyCtrl GetRandomEnemyPrefab()
     {
-        int rand = Random.Range(0, this._listEnemyPrefabs.Count);
-        return this._listEnemyPrefabs[rand];
+        int rand = Random.Range(0, _listEnemyPrefabs.Count);
+        return _listEnemyPrefabs[rand];
     }
 }

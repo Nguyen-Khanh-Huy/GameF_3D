@@ -6,7 +6,7 @@ using UnityEngine;
 public abstract class PoolManager<T> : Singleton<PoolManager<T>> where T : PoolObj<T>
 {
     protected int _spawnCount = 0;
-    [SerializeField] protected List<T> _listPool = new();
+    [SerializeField] public List<T> _listPool = new();
 
     protected override void Awake()
     {
@@ -25,12 +25,12 @@ public abstract class PoolManager<T> : Singleton<PoolManager<T>> where T : PoolO
         else
         {
             newObj.transform.SetPositionAndRotation(postion, rotation);
+            newObj.gameObject.SetActive(true);
         }
-        newObj.gameObject.SetActive(true);
         return newObj;
     }
 
-    protected virtual T GetObjectFromPool(T prefab)
+    public virtual T GetObjectFromPool(T prefab)
     {
         foreach (T inPoolObj in _listPool)
         {
@@ -45,15 +45,15 @@ public abstract class PoolManager<T> : Singleton<PoolManager<T>> where T : PoolO
 
     public virtual void Despawn(T prefab)
     {
-        if (_listPool.Contains(prefab)) return;
+        if (_listPool.Contains(prefab) && prefab == null) return;
         prefab.gameObject.SetActive(false);
         AddObjToPool(prefab);
     }
 
-    protected virtual void UpdateName(T prefab, T newObject)
+    public virtual void UpdateName(T prefab, T newObject)
     {
         _spawnCount++;
-        newObject.name = _spawnCount + "_" + prefab.name;
+        newObject.name = _spawnCount + "_" + prefab.GetName();
     }
 
     protected virtual void AddObjToPool(T obj)

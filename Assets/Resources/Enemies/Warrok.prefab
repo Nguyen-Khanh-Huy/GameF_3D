@@ -623,7 +623,8 @@ MonoBehaviour:
   _anim: {fileID: 1608482401481028696}
   _agent: {fileID: 6867624405203697164}
   _movingPoints: {fileID: 0}
-  _enemyMoving: {fileID: 0}
+  _enemyMoving: {fileID: 1533862935855231594}
+  _itemManager: {fileID: 0}
   _hp: 3
 --- !u!1 &1879820963675813174
 GameObject:
@@ -2778,6 +2779,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyCtrl: {fileID: 2413134371495634388}
   _despawnByTime: 3
+  _isSpawnedItem: 0
 --- !u!1 &8121953422967702774
 GameObject:
   m_ObjectHideFlags: 0

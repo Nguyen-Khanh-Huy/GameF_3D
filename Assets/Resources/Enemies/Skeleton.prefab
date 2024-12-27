@@ -2676,7 +2676,7 @@ MonoBehaviour:
   _anim: {fileID: 56088643350365166}
   _agent: {fileID: 7863416311376114622}
   _movingPoints: {fileID: 0}
-  _enemyMoving: {fileID: 0}
+  _enemyMoving: {fileID: 8850121102423905754}
   _itemManager: {fileID: 0}
   _hp: 3
 --- !u!1 &9055635312460535975

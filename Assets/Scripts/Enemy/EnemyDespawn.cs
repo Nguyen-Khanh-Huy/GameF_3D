@@ -24,16 +24,18 @@ public class EnemyDespawn : PISMonoBehaviour
     {
         if (_enemyCtrl.Hp > 0) return;
         SpawnItems();
-        Invoke(nameof(DelayDespawnEnemy), _despawnByTime);
+        StartCoroutine(DelayDespawnEnemy());
     }
 
-    private void DelayDespawnEnemy()
+    private IEnumerator DelayDespawnEnemy()
     {
+        yield return new WaitForSeconds(_despawnByTime);
         _enemyCtrl.Hp = 3;
         _enemyCtrl.EnemyMoving.PointIdx = 0;
         _isSpawnedItem = false;
         PoolManager<EnemyCtrl>.Ins.Despawn(_enemyCtrl);
     }
+
     private void SpawnItems()
     {
         if (!_isSpawnedItem)
