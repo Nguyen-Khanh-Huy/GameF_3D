@@ -1,26 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class BulletSlow : BulletCtrl
 {
     [SerializeField] private TowerFireSlow _towerFireSlow;
-    [SerializeField] private float _speedBullet = 10;
-    
-    private Transform target;
+
+    [SerializeField] private Transform target;
 
     protected override void OnEnable()
     {
-        target = _towerFireSlow.TowerSlow.TowerTarget.Target.transform;
+        _speedBullet = 6f;
+        _despawnByTime = 4f;
         base.OnEnable();
+        target = _towerFireSlow.TowerSlow.TowerTarget.Target.transform;
+    }
+
+    protected override void OnTriggerEnter(Collider other)
+    {
+        EnemyCtrl enemy = other.GetComponentInParent<EnemyCtrl>();
+        if (enemy != null)
+        {
+            UpdateHpEnemy(enemy);
+        }
     }
 
     protected override void BulletMoving()
     {
-        if (target == null) return;
-        transform.position = Vector3.MoveTowards(transform.position, target.position, _speedBullet * Time.deltaTime);
-        transform.LookAt(target);
+        if (target == null && _speedBullet == 0f) return;
+        Vector3 targetUpdate = target.position + Vector3.up;
+        transform.LookAt(targetUpdate);
+        transform.position = Vector3.MoveTowards(transform.position, targetUpdate, _speedBullet * Time.deltaTime);
+        if(transform.position == targetUpdate)
+        {
+            DespawnBullet();
+        }
     }
 
     public override string GetName()

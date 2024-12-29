@@ -4,6 +4,9 @@ using UnityEngine;
 
 public abstract class BulletCtrl : PoolObj<BulletCtrl>
 {
+    [SerializeField] protected float _speedBullet;
+    [SerializeField] protected float _despawnByTime;
+
     private void Update()
     {
         BulletMoving();
@@ -11,22 +14,23 @@ public abstract class BulletCtrl : PoolObj<BulletCtrl>
 
     protected abstract void BulletMoving();
 
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
-        EnemyCtrl enemy = other.GetComponentInParent<EnemyCtrl>();
-        if (enemy != null)
-        {
-            DespawnBullet();
-            UpdateHpEnemy(enemy);
-        }
+        // For Override BulletSlow
     }
 
     protected virtual void OnEnable()
     {
-        Invoke(nameof(DespawnBullet), 3f);
+        // Override _speedBullet and _despawnByTime
+        Invoke(nameof(DespawnBullet), _despawnByTime);
     }
 
-    private void DespawnBullet()
+    protected virtual void OnDisable()
+    {
+        CancelInvoke(nameof(DespawnBullet));
+    }
+
+    protected virtual void DespawnBullet()
     {
         PoolManager<BulletCtrl>.Ins.Despawn(this);
     }
@@ -36,7 +40,6 @@ public abstract class BulletCtrl : PoolObj<BulletCtrl>
         if (enemy.Hp <= 0) return;
         enemy.Hp--;
     }
-
     
     protected override void LoadComponents()
     {
