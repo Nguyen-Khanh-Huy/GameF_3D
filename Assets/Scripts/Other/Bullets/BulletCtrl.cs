@@ -4,12 +4,12 @@ using UnityEngine;
 
 public abstract class BulletCtrl : PoolObj<BulletCtrl>
 {
-    [SerializeField] private float _speedBullet = 100;
-
     private void Update()
     {
-        transform.Translate(this._speedBullet * Time.deltaTime * Vector3.forward);
+        BulletMoving();
     }
+
+    protected abstract void BulletMoving();
 
     private void OnTriggerEnter(Collider other)
     {
@@ -21,7 +21,7 @@ public abstract class BulletCtrl : PoolObj<BulletCtrl>
         }
     }
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         Invoke(nameof(DespawnBullet), 3f);
     }
