@@ -751,7 +751,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyCtrl: {fileID: 987604371058854167}
-  _pointIdx: 0
   _isFinish: 0
 --- !u!1 &2644343569514773732
 GameObject:
@@ -2678,7 +2677,7 @@ MonoBehaviour:
   _movingPoints: {fileID: 0}
   _enemyMoving: {fileID: 8850121102423905754}
   _itemManager: {fileID: 0}
-  _hp: 10
+  _hp: 15
 --- !u!1 &9055635312460535975
 GameObject:
   m_ObjectHideFlags: 0

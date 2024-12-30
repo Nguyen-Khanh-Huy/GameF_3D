@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class BulletSlow : BulletCtrl
 {
-    [SerializeField] private TowerFireSlow _towerFireSlow;
     [SerializeField] private HitSlow _hitSlow;
+    [SerializeField] private Transform target;
 
-    [SerializeField] private EnemyCtrl target;
+    [SerializeField] private float _speedBullet = 6f;
+    [SerializeField] private float _despawnByTime = 4f;
+    private bool _isGetTarget;
 
     protected override void OnEnable()
     {
-        _speedBullet = 6f;
-        _despawnByTime = 4f;
-        base.OnEnable();
-        target = _towerFireSlow.TowerSlow.TowerTarget.Target;
+        _isGetTarget = false;
+        Invoke(nameof(DespawnBullet), _despawnByTime);
     }
 
     protected override void OnTriggerEnter(Collider other)
@@ -26,14 +26,19 @@ public class BulletSlow : BulletCtrl
             SpawnHitSlow(enemy);
         }
     }
-
     protected override void BulletMoving()
     {
-        if (target == null && _speedBullet == 0f) return;
-        Vector3 targetUpdate = target.transform.position + Vector3.up;
+        if (!_isGetTarget && TowerFireSlow != null)
+        {
+            _isGetTarget = true;
+            target = TowerFireSlow.TowerSlow.TowerTarget.Target.transform;
+        }
+
+        if (target == null) return;
+        Vector3 targetUpdate = target.position + Vector3.up;
         transform.LookAt(targetUpdate);
         transform.position = Vector3.MoveTowards(transform.position, targetUpdate, _speedBullet * Time.deltaTime);
-        if(transform.position == targetUpdate)
+        if (transform.position == targetUpdate)
         {
             DespawnBullet();
         }
@@ -41,7 +46,7 @@ public class BulletSlow : BulletCtrl
 
     private void SpawnHitSlow(EnemyCtrl enemy)
     {
-        if(enemy.Hp > 0)
+        if (enemy.Hp > 0)
         {
             EffectCtrl hitSpawn = PoolManager<EffectCtrl>.Ins.Spawn(_hitSlow, enemy.transform.position, Quaternion.identity);
             hitSpawn.transform.SetParent(enemy.transform);
@@ -57,8 +62,7 @@ public class BulletSlow : BulletCtrl
 
     protected override void LoadComponents()
     {
-        if (_towerFireSlow != null && _hitSlow != null) return;
-        _towerFireSlow = GameObject.Find("TowerFireSlow").GetComponent<TowerFireSlow>();
+        if (_hitSlow != null) return;
         _hitSlow = Resources.Load<HitSlow>("Hits/HitSlow");
     }
 }

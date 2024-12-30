@@ -5,28 +5,18 @@ using UnityEngine;
 
 public class BulletNormal : BulletCtrl
 {
+    [SerializeField] private float _speedBullet = 80f;
+    [SerializeField] private float _despawnByTime = 2f;
+
     private bool isCollided;
     protected override void OnEnable()
     {
-        _speedBullet = 80f;
-        _despawnByTime = 2f;
         isCollided = false;
-        base.OnEnable();
+        Invoke(nameof(DespawnBullet), _despawnByTime);
     }
-
-    //protected override void OnTriggerEnter(Collider other)
-    //{
-    //    base.OnTriggerEnter(other);
-    //    EnemyCtrl enemy = other.GetComponentInParent<EnemyCtrl>();
-    //    if (enemy != null && enemy.Hp > 0)
-    //    {
-    //        DespawnBullet();
-    //    }
-    //}
 
     protected override void BulletMoving()
     {
-        if (_speedBullet == 0f) return;
         transform.Translate(_speedBullet * Time.deltaTime * Vector3.forward);
         BulletRayCast();
     }

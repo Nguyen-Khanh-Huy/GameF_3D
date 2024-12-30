@@ -24,9 +24,12 @@ public class TowerFireSlow : PISMonoBehaviour
         if (_timeFire >= _speedFire)
         {
             _timeFire = 0;
-            PoolManager<BulletCtrl>.Ins.Spawn(_towerSlow.BulletSlow, _towerSlow.FirePoint.position, _towerSlow.FirePoint.rotation);
+            BulletCtrl bulletSlow = PoolManager<BulletCtrl>.Ins.Spawn(_towerSlow.BulletSlow, _towerSlow.FirePoint.position, _towerSlow.FirePoint.rotation);
+            bulletSlow.TowerFireSlow = this;
+            
             EffectCtrl muzzleNormal = PoolManager<EffectCtrl>.Ins.Spawn(_towerSlow.MuzzleSlow, _towerSlow.FirePoint.position, _towerSlow.FirePoint.rotation);
             muzzleNormal.transform.SetParent(_towerSlow.FirePoint);
+            
             AudioManager.Ins.SpawnSFX(typeof(AudioSFXTowerFire), _towerSlow.FirePoint.position);
         }
     }

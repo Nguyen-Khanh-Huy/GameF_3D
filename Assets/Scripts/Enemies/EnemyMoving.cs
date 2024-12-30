@@ -5,9 +5,9 @@ using UnityEngine;
 public class EnemyMoving : PISMonoBehaviour
 {
     [SerializeField] private EnemyCtrl _enemyCtrl;
-    [SerializeField] private float _timeChangeSpeed;
-    [SerializeField] private int _pointIdx = 0;
     [SerializeField] private bool _isFinish;
+    private int _pointIdx = 0;
+    private float _timeChangeSpeed;
 
     public float TimeChangeSpeed { get => _timeChangeSpeed; set => _timeChangeSpeed = value; }
     public int PointIdx { get => _pointIdx; set => _pointIdx = value; }

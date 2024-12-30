@@ -4,8 +4,7 @@ using UnityEngine;
 
 public abstract class BulletCtrl : PoolObj<BulletCtrl>
 {
-    [SerializeField] protected float _speedBullet;
-    [SerializeField] protected float _despawnByTime;
+    public TowerFireSlow TowerFireSlow;
 
     private void Update()
     {
@@ -21,8 +20,7 @@ public abstract class BulletCtrl : PoolObj<BulletCtrl>
 
     protected virtual void OnEnable()
     {
-        // For Override _speedBullet and _despawnByTime
-        Invoke(nameof(DespawnBullet), _despawnByTime);
+        // For Override
     }
 
     protected virtual void OnDisable()
