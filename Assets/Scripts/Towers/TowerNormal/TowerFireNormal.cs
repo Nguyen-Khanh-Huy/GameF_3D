@@ -28,7 +28,7 @@ public class TowerFireNormal : PISMonoBehaviour
             PoolManager<BulletCtrl>.Ins.Spawn(_towerNormal.BulletNormal, getFirePoint.position, getFirePoint.rotation);
             EffectCtrl muzzleNormal = PoolManager<EffectCtrl>.Ins.Spawn(_towerNormal.MuzzleNormal, getFirePoint.position, getFirePoint.rotation);
             muzzleNormal.transform.SetParent(getFirePoint);
-            AudioManager.Ins.SpawnSFX(typeof(AudioSFXTowerFire), getFirePoint.position);
+            AudioManager.Ins.SpawnSFX(typeof(AudioSFXTowerFireNormal), getFirePoint.position);
         }
     }
 

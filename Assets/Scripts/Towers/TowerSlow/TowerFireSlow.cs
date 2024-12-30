@@ -30,7 +30,7 @@ public class TowerFireSlow : PISMonoBehaviour
             EffectCtrl muzzleNormal = PoolManager<EffectCtrl>.Ins.Spawn(_towerSlow.MuzzleSlow, _towerSlow.FirePoint.position, _towerSlow.FirePoint.rotation);
             muzzleNormal.transform.SetParent(_towerSlow.FirePoint);
             
-            AudioManager.Ins.SpawnSFX(typeof(AudioSFXTowerFire), _towerSlow.FirePoint.position);
+            AudioManager.Ins.SpawnSFX(typeof(AudioSFXTowerFireSlow), _towerSlow.FirePoint.position);
         }
     }
 

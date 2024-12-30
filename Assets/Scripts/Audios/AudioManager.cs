@@ -20,7 +20,6 @@ public class AudioManager : Singleton<AudioManager>
     private void Start()
     {
         SpawnMusic(typeof(AudioMusicGamePlay));
-        Debug.Log(_audioPrefab.GetMusicPrefab(typeof(AudioMusicGamePlay)).GetName());
     }
     protected override void LoadComponents()
     {

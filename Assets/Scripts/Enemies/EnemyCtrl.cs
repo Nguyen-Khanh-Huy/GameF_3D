@@ -28,6 +28,6 @@ public abstract class EnemyCtrl : PoolObj<EnemyCtrl>
         _movingPoints = GameObject.Find("MovingPoints").GetComponent<MovingPoints>();
         _enemyMoving = GetComponentInChildren<EnemyMoving>();
         _itemManager = GameObject.Find("ItemDropManager").GetComponent<ItemDropManager>();
-        Debug.Log("Load: " + transform.name);
+        //Debug.Log("Load: " + transform.name);
     }
 }

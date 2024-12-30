@@ -26,15 +26,15 @@ public class BulletSlow : BulletCtrl
             SpawnHitSlow(enemy);
         }
     }
+
     protected override void BulletMoving()
     {
-        if (!_isGetTarget && TowerFireSlow != null)
+        if (!_isGetTarget && TowerFireSlow.TowerSlow.TowerTarget.Target != null)
         {
             _isGetTarget = true;
             target = TowerFireSlow.TowerSlow.TowerTarget.Target.transform;
         }
 
-        if (target == null) return;
         Vector3 targetUpdate = target.position + Vector3.up;
         transform.LookAt(targetUpdate);
         transform.position = Vector3.MoveTowards(transform.position, targetUpdate, _speedBullet * Time.deltaTime);
