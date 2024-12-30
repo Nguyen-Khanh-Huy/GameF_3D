@@ -5,9 +5,11 @@ using UnityEngine;
 public class EnemyMoving : PISMonoBehaviour
 {
     [SerializeField] private EnemyCtrl _enemyCtrl;
+    [SerializeField] private float _timeChangeSpeed;
     [SerializeField] private int _pointIdx = 0;
     [SerializeField] private bool _isFinish;
 
+    public float TimeChangeSpeed { get => _timeChangeSpeed; set => _timeChangeSpeed = value; }
     public int PointIdx { get => _pointIdx; set => _pointIdx = value; }
 
     private void Update()
@@ -26,6 +28,20 @@ public class EnemyMoving : PISMonoBehaviour
     {
         ChangeState();
         MovingNextPoint();
+        ChangeSpeed();
+    }
+
+    private void ChangeSpeed()
+    {
+        if(_enemyCtrl.Agent.speed != 3.5f)
+        {
+            _timeChangeSpeed += Time.deltaTime;
+            if(_timeChangeSpeed >= 2f)
+            {
+                _enemyCtrl.Agent.speed = 3.5f;
+                _timeChangeSpeed = 0f;
+            }
+        }
     }
 
     private void MovingNextPoint()

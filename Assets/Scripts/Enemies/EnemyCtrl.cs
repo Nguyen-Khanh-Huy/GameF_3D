@@ -11,7 +11,7 @@ public abstract class EnemyCtrl : PoolObj<EnemyCtrl>
     [SerializeField] private MovingPoints _movingPoints;
     [SerializeField] private EnemyMoving _enemyMoving;
     [SerializeField] private ItemDropManager _itemManager;
-    [SerializeField] private int _hp = 3;
+    [SerializeField] private int _hp = 10;
 
     public Animator Anim { get => _anim; }
     public NavMeshAgent Agent { get => _agent; }

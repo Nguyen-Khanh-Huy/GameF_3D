@@ -2093,7 +2093,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _towerSlow: {fileID: 2658394774742397386}
-  _speedFire: 1
+  _speedFire: 1.5
 --- !u!1 &1000356442
 GameObject:
   m_ObjectHideFlags: 0
@@ -5548,7 +5548,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &2658394774742101483
 GameObject:
   m_ObjectHideFlags: 0

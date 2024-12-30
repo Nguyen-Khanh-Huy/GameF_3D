@@ -21,7 +21,7 @@ public abstract class BulletCtrl : PoolObj<BulletCtrl>
 
     protected virtual void OnEnable()
     {
-        // Override _speedBullet and _despawnByTime
+        // For Override _speedBullet and _despawnByTime
         Invoke(nameof(DespawnBullet), _despawnByTime);
     }
 
