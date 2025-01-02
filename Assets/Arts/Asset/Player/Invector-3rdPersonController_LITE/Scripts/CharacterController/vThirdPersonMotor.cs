@@ -58,7 +58,7 @@ namespace Invector.vCharacterController
 
         #region Components
 
-        internal Animator animator;
+        [SerializeField] internal Animator animator;
         internal Rigidbody _rigidbody;                                                      // access the Rigidbody component
         internal PhysicMaterial frictionPhysics, maxFrictionPhysics, slippyPhysics;         // create PhysicMaterial for the Rigidbody
         internal CapsuleCollider _capsuleCollider;                                          // access CapsuleCollider information
@@ -107,7 +107,7 @@ namespace Invector.vCharacterController
 
         public void Init()
         {
-            animator = GetComponent<Animator>();
+            animator = transform.Find("Model").GetComponent<Animator>();
             animator.updateMode = AnimatorUpdateMode.AnimatePhysics;
 
             // slides the character through walls and edges

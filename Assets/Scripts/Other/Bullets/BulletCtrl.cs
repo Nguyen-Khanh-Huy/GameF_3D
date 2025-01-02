@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 
 public abstract class BulletCtrl : PoolObj<BulletCtrl>
 {
-    public TowerFireSlow TowerFireSlow;
+    protected TowerFireSlow _towerFireSlow;
+    public TowerFireSlow TowerFireSlow { get => _towerFireSlow; set => _towerFireSlow = value; }
 
     private void Update()
     {

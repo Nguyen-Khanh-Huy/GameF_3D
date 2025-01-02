@@ -29,10 +29,10 @@ public class BulletSlow : BulletCtrl
 
     protected override void BulletMoving()
     {
-        if (!_isGetTarget && TowerFireSlow.TowerSlow.TowerTarget.Target != null)
+        if (!_isGetTarget && _towerFireSlow.TowerSlow.TowerTarget.Target != null)
         {
             _isGetTarget = true;
-            target = TowerFireSlow.TowerSlow.TowerTarget.Target.transform;
+            target = _towerFireSlow.TowerSlow.TowerTarget.Target.transform;
         }
 
         Vector3 targetUpdate = target.position + Vector3.up;

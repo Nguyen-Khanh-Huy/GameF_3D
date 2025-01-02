@@ -5,7 +5,7 @@ using UnityEngine;
 public class TowerFireSlow : PISMonoBehaviour
 {
     [SerializeField] private TowerSlow _towerSlow;
-    [SerializeField] private float _speedFire = 1f;
+    [SerializeField] private float _speedFire = 1.5f;
 
     public TowerSlow TowerSlow { get => _towerSlow; }
     

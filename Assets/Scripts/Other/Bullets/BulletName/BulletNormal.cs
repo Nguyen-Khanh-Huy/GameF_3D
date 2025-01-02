@@ -18,10 +18,10 @@ public class BulletNormal : BulletCtrl
     protected override void BulletMoving()
     {
         transform.Translate(_speedBullet * Time.deltaTime * Vector3.forward);
-        BulletRayCast();
+        BulletSphereCast();
     }
 
-    private void BulletRayCast()
+    private void BulletSphereCast()
     {
         if (Physics.SphereCast(transform.position, 0.1f, Vector3.forward, out RaycastHit hitInfo, _speedBullet * Time.deltaTime))
         {

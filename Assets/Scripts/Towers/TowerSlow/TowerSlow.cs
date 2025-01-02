@@ -22,7 +22,7 @@ public class TowerSlow : TowerCtrl
         _towerFireSlow = GetComponentInChildren<TowerFireSlow>();
         _rotate = transform.Find("Model/Rotate");
         _firePoint = transform.Find("Model/Rotate/Gun/FirePoint");
-        _bulletSlow = Resources.Load<BulletCtrl>("Bullets/BulletSlow");
+        _bulletSlow = Resources.Load<BulletCtrl>("TowerBullets/BulletSlow");
         _muzzleSlow = Resources.Load<EffectCtrl>("Muzzle/MuzzleSlow");
     }
 }

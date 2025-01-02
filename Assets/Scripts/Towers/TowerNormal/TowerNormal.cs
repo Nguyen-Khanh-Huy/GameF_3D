@@ -25,7 +25,7 @@ public class TowerNormal : TowerCtrl
         _rotate = transform.Find("Model/Rotate");
         _firePoint1 = transform.Find("Model/Rotate/Gun/FirePoint1");
         _firePoint2 = transform.Find("Model/Rotate/Gun/FirePoint2");
-        _bulletNormal = Resources.Load<BulletCtrl>("Bullets/BulletNormal");
+        _bulletNormal = Resources.Load<BulletCtrl>("TowerBullets/BulletNormal");
         _muzzleNormal = Resources.Load<EffectCtrl>("Muzzle/MuzzleNormal");
     }
 }
