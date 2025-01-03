@@ -22,7 +22,7 @@ public class PlayerFire : PISMonoBehaviour
 
     private void FireBullet()
     {
-        if (!_player.PlayerRig.IsAim) return;
+        if (!_player.PlayerRig.IsAim || _player.Weapon.GetWeapon() == null) return;
         _timeFire += Time.deltaTime;
         if (Input.GetMouseButton(0))
         {

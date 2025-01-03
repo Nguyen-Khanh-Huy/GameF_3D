@@ -1176,7 +1176,7 @@ MonoBehaviour:
   _movingPoints: {fileID: 0}
   _enemyMoving: {fileID: 3600049246495746870}
   _itemManager: {fileID: 0}
-  _hp: 15
+  _hp: 10
 --- !u!1 &5565375527370056020
 GameObject:
   m_ObjectHideFlags: 0
