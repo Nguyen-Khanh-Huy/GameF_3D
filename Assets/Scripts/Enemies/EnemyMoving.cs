@@ -38,8 +38,8 @@ public class EnemyMoving : PISMonoBehaviour
             _timeChangeSpeed += Time.deltaTime;
             if(_timeChangeSpeed >= 2f)
             {
-                _enemyCtrl.Agent.speed = 3.5f;
                 _timeChangeSpeed = 0f;
+                _enemyCtrl.Agent.speed = 3.5f;
             }
         }
     }

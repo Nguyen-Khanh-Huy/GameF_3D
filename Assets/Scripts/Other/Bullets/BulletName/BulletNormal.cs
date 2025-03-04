@@ -29,8 +29,8 @@ public class BulletNormal : BulletCtrl
             if (enemy != null && enemy.Hp > 0 && !isCollided)
             {
                 isCollided = true;
-                DespawnBullet();
                 UpdateHpEnemy(enemy);
+                DespawnBullet();
             }
         }
     }

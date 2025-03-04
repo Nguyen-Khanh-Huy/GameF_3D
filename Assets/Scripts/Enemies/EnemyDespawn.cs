@@ -31,6 +31,7 @@ public class EnemyDespawn : PISMonoBehaviour
     {
         yield return new WaitForSeconds(_despawnByTime);
         _enemyCtrl.Hp = 10;
+        _enemyCtrl.HpBar.value = _enemyCtrl.Hp / _enemyCtrl.Hp;
         _enemyCtrl.Agent.speed = 3.5f;
         _enemyCtrl.EnemyMoving.PointIdx = 0;
         _isSpawnedItem = false;

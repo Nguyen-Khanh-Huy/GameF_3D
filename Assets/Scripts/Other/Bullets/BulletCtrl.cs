@@ -17,12 +17,12 @@ public abstract class BulletCtrl : PoolObj<BulletCtrl>
 
     protected virtual void OnTriggerEnter(Collider other)
     {
-        // For Override BulletSlow
+        // For Override BulletSlow and BulletWeaponWand
     }
 
     protected virtual void OnEnable()
     {
-        // For Override
+        // For Override All
     }
 
     protected virtual void OnDisable()
@@ -39,6 +39,7 @@ public abstract class BulletCtrl : PoolObj<BulletCtrl>
     {
         if (enemy.Hp <= 0) return;
         enemy.Hp--;
+        enemy.HpBar.value = (float)enemy.Hp / 10;
     }
     
     protected override void LoadComponents()

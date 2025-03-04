@@ -7,14 +7,14 @@ public class TowerTarget : MonoBehaviour
     [SerializeField] private EnemyCtrl _target;
     [SerializeField] private List<EnemyCtrl> _listEnemyTarget;
     public EnemyCtrl Target { get => _target; }
-    public List<EnemyCtrl> ListEnemyTarget { get => _listEnemyTarget; set => _listEnemyTarget = value; }
+    //public List<EnemyCtrl> ListEnemyTarget { get => _listEnemyTarget; set => _listEnemyTarget = value; }
 
     private void FixedUpdate()
     {
         RemoveEnemyDeadInList();
     }
 
-    public void RemoveEnemyDeadInList()
+    private void RemoveEnemyDeadInList()
     {
         if(_target == null) return;
         _listEnemyTarget.RemoveAll(enemy => enemy.Hp <= 0);

@@ -6,11 +6,10 @@ public class TowerFireSlow : PISMonoBehaviour
 {
     [SerializeField] private TowerSlow _towerSlow;
     [SerializeField] private float _speedFire = 1.5f;
+    private float _timeFire;
 
     public TowerSlow TowerSlow { get => _towerSlow; }
     
-    private float _timeFire;
-
     private void Update()
     {
         LookAtTarget();

@@ -5,8 +5,8 @@ using UnityEngine;
 
 public abstract class PoolManager<T> : Singleton<PoolManager<T>> where T : PoolObj<T>
 {
+    [SerializeField] protected List<T> _listPool = new();
     protected int _spawnCount = 0;
-    [SerializeField] public List<T> _listPool = new();
 
     protected override void Awake()
     {
