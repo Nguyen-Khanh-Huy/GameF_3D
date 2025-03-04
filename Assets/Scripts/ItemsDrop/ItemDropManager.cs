@@ -27,7 +27,7 @@ public class ItemDropManager : PISMonoBehaviour
         SpawnCoins(enemy);
     }
 
-    public void SpawnCoins(EnemyCtrl enemy)
+    private void SpawnCoins(EnemyCtrl enemy)
     {
         Vector3 randomPosDrop = enemy.transform.position + new Vector3(Random.Range(-0.5f, 0.5f), 0.5f, Random.Range(-0.5f, 0.5f));
         for (int i = 0; i < 5; i++)
@@ -36,7 +36,7 @@ public class ItemDropManager : PISMonoBehaviour
         }
     }
 
-    public void SpawnWeapons(EnemyCtrl enemy)
+    private void SpawnWeapons(EnemyCtrl enemy)
     {
         Vector3 randomPosDrop = enemy.transform.position + new Vector3(Random.Range(-0.5f, 0.5f), 1f, Random.Range(-0.5f, 0.5f));
         int randomRate = Random.Range(1, 10);

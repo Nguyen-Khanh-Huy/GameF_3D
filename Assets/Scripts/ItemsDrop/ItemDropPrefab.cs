@@ -8,7 +8,6 @@ public class ItemDropPrefab : PISMonoBehaviour
     [SerializeField] private List<ItemDropCtrl> _listItemPrefabs = new();
     protected override void LoadComponents()
     {
-        GetItemPrefab(typeof(ItemDropAxe));
         if (_listItemPrefabs.Count > 0) return;
         _listItemPrefabs.Clear();
         ItemDropCtrl[] itemPrefabs = Resources.LoadAll<ItemDropCtrl>("ItemsDrop");
